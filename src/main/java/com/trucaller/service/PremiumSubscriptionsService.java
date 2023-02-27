@@ -28,7 +28,7 @@ public class PremiumSubscriptionsService {
 
     public SubscriptionsResponse premiumSubscriptions(SubscriptionsRequest subscriptionsRequest) throws IOException {
 
-        String filePath = "E:\\Trucaller\\trucaller_api\\" + Utils.getDateToString(new Date(), Defs.logDate) + "_request_response.log";
+        String filePath = Utils.getDateToString(new Date(), Defs.logDate) + "_request_response.log";
         FileWriter fileWriter = new FileWriter(filePath,true);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         try {
@@ -43,7 +43,7 @@ public class PremiumSubscriptionsService {
                         .statusCode(600)
                         .build();
             }
-            String transactionId = UUID.randomUUID().toString();
+            String transactionId =UUID.randomUUID().toString();
             // Create the message
             String signature = CryptoUtils.sign(CryptoUtils.prepareDataArray(partnerId, customer, premiumId, transactionId));
             PremiumSubscriptionsRequest premiumSubscriptionsRequest = PremiumSubscriptionsRequest.builder()
@@ -57,6 +57,8 @@ public class PremiumSubscriptionsService {
             logger.info(request);
             bufferedWriter.write(new Date()+" "+request);
             bufferedWriter.newLine();
+            Boolean status= Utils.verifiedSignature(premiumSubscriptionsRequest.getSignature(),partnerId+customer+premiumId+transactionId);
+            System.out.println(status);
             ResponseEntity<PremiumSubscriptionsResponse> response = premiumSubscriptionsApi.premiumSubscriptionsApi(premiumSubscriptionsRequest);
             SubscriptionsResponse subscriptionsResponse = SubscriptionsResponse.builder()
                     .responseTransactionId(response.getBody().getResponseTransactionId())
