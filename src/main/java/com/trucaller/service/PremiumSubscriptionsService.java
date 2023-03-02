@@ -28,7 +28,7 @@ public class PremiumSubscriptionsService {
 
     public SubscriptionsResponse premiumSubscriptions(SubscriptionsRequest subscriptionsRequest) throws IOException {
 
-        String filePath = Utils.getDateToString(new Date(), Defs.logDate) + "_request_response.log";
+        String filePath = "/var/www/html/api.partner.momagic.com.bd/truecaller_log/"+Utils.getDateToString(new Date(), Defs.logDate) + "_request_response.log";
         FileWriter fileWriter = new FileWriter(filePath,true);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         try {

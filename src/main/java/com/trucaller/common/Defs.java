@@ -12,8 +12,8 @@ public class Defs {
     public static String Unauthorized_MSG="Signature verification failed";
     public static String Conflict_MSG="Transaction already performed";
     public static String InternalServerError_MSG="Error while granting premium";
-    public static String privateKeyPath="/home/arun.biswas/mykey.pkcs8";
-    public static String publicKeyPath="/home/arun.biswas/mykey_pub.der";
+    public static String privateKeyPath="/var/www/html/api.partner.momagic.com.bd/keys/mykey.pkcs8";
+    public static String publicKeyPath="/var/www/html/api.partner.momagic.com.bd/keys/mykey_pub.der";
     public static String logDate= "dd_MM_yyyy";
     public static String partnerId="momagic";
 }
